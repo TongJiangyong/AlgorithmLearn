@@ -1,0 +1,98 @@
+# depslib dependency file v1.0
+1489409674 source:c:\users\hasee\desktop\codeblock\tree\binarytree\binarytree.cpp
+	"binaryTree.h"
+	"stackArray.h"
+	"queueArray.h"
+	"except.h"
+	<iostream>
+
+1489409267 c:\users\hasee\desktop\codeblock\tree\binarytree\binarytree.h
+	<iostream>
+	"binaryTree.cpp"
+
+1489409674 c:\users\hasee\desktop\codeblock\tree\binarytree\binarytree.cpp
+	"binaryTree.h"
+	"stackArray.h"
+	"queueArray.h"
+	"except.h"
+	<iostream>
+
+1489409289 source:c:\users\hasee\desktop\codeblock\tree\binarytree\main.cpp
+	<iostream>
+	<stdio.h>
+	"binaryTree.h"
+
+1489389959 c:\users\hasee\desktop\codeblock\tree\binarytree\except.h
+	<stdio.h>
+
+1489389896 c:\users\hasee\desktop\codeblock\tree\binarytree\stackarray.h
+	"stackArray.cpp"
+
+1489375272 c:\users\hasee\desktop\codeblock\tree\binarytree\stackarray.cpp
+	"stackArray.h"
+	<stdio.h>
+	"except.h"
+
+1489375272 source:c:\users\hasee\desktop\codeblock\tree\binarytree\stackarray.cpp
+	"stackArray.h"
+	<stdio.h>
+	"except.h"
+
+1489331472 c:\users\hasee\desktop\codeblock\tree\binarytree\queuearray.h
+	"queueArray.cpp"
+
+1489331310 c:\users\hasee\desktop\codeblock\tree\binarytree\queuearray.cpp
+	"queueArray.h"
+	<stdio.h>
+	"except.h"
+
+1489331310 source:c:\users\hasee\desktop\codeblock\tree\binarytree\queuearray.cpp
+	"queueArray.h"
+	<stdio.h>
+	"except.h"
+
+1489409290 source:c:\users\jiangyong_tong\desktop\codeblock\tree\binarytree\main.cpp
+	<iostream>
+	<stdio.h>
+	"binaryTree.h"
+
+1489409268 c:\users\jiangyong_tong\desktop\codeblock\tree\binarytree\binarytree.h
+	<iostream>
+	"binaryTree.cpp"
+
+1489409742 c:\users\jiangyong_tong\desktop\codeblock\tree\binarytree\binarytree.cpp
+	"binaryTree.h"
+	"stackArray.h"
+	"queueArray.h"
+	"except.h"
+	<iostream>
+
+1489389898 c:\users\jiangyong_tong\desktop\codeblock\tree\binarytree\stackarray.h
+	"stackArray.cpp"
+
+1489375274 c:\users\jiangyong_tong\desktop\codeblock\tree\binarytree\stackarray.cpp
+	"stackArray.h"
+	<stdio.h>
+	"except.h"
+
+1489389960 c:\users\jiangyong_tong\desktop\codeblock\tree\binarytree\except.h
+	<stdio.h>
+
+1489331474 c:\users\jiangyong_tong\desktop\codeblock\tree\binarytree\queuearray.h
+	"queueArray.cpp"
+
+1489331312 c:\users\jiangyong_tong\desktop\codeblock\tree\binarytree\queuearray.cpp
+	"queueArray.h"
+	<stdio.h>
+	"except.h"
+
+1489331312 source:c:\users\jiangyong_tong\desktop\codeblock\tree\binarytree\queuearray.cpp
+	"queueArray.h"
+	<stdio.h>
+	"except.h"
+
+1489375274 source:c:\users\jiangyong_tong\desktop\codeblock\tree\binarytree\stackarray.cpp
+	"stackArray.h"
+	<stdio.h>
+	"except.h"
+

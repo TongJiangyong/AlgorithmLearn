@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1488774100 source:c:\users\hasee\desktop\codeblock\list\linearlist\linearlist\list.cpp
+	"list.h"
+	"except.h"
+	"iostream"
+
+1488774140 c:\users\hasee\desktop\codeblock\list\linearlist\linearlist\list.h
+	<iostream>
+	"list.cpp"
+
+1488773094 c:\users\hasee\desktop\codeblock\list\linearlist\linearlist\except.h
+	<stdio.h>
+
+1488783305 source:c:\users\hasee\desktop\codeblock\list\linearlist\linearlist\main.cpp
+	<stdio.h>
+	<iostream>
+	"linearList.h"
+
+1488774100 c:\users\hasee\desktop\codeblock\list\linearlist\linearlist\list.cpp
+	"list.h"
+	"except.h"
+	"iostream"
+
+1488783314 source:c:\users\hasee\desktop\codeblock\list\linearlist\linearlist\linearlist.cpp
+	"linearList.h"
+	"except.h"
+	"iostream"
+
+1488783327 c:\users\hasee\desktop\codeblock\list\linearlist\linearlist\linearlist.h
+	<iostream>
+	"linearList.cpp"
+
+1488783314 c:\users\hasee\desktop\codeblock\list\linearlist\linearlist\linearlist.cpp
+	"linearList.h"
+	"except.h"
+	"iostream"
+

@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1488783314 source:c:\users\hasee\desktop\codeblock\stack\stackarray\linearlist.cpp
+	"linearList.h"
+	"except.h"
+	"iostream"
+
+1489375121 c:\users\hasee\desktop\codeblock\stack\stackarray\linearlist.h
+	<iostream>
+	"linearList.cpp"
+
+1488783314 c:\users\hasee\desktop\codeblock\stack\stackarray\linearlist.cpp
+	"linearList.h"
+	"except.h"
+	"iostream"
+
+1489326002 c:\users\hasee\desktop\codeblock\stack\stackarray\except.h
+	<stdio.h>
+
+1489389810 source:c:\users\hasee\desktop\codeblock\stack\stackarray\main.cpp
+	<iostream>
+	<stdio.h>
+	"stackArray.h"
+
+1489375260 c:\users\hasee\desktop\codeblock\stack\stackarray\stackarray.h
+	"linearList.h"
+	"stackArray.cpp"
+
+1489375272 c:\users\hasee\desktop\codeblock\stack\stackarray\stackarray.cpp
+	"stackArray.h"
+	<stdio.h>
+	"except.h"
+
+1489375272 source:c:\users\hasee\desktop\codeblock\stack\stackarray\stackarray.cpp
+	"stackArray.h"
+	<stdio.h>
+	"except.h"
+

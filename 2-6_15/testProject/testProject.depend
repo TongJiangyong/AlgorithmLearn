@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1488535109 source:c:\users\hasee\desktop\codeblock\2-6_15\testproject\main.cpp
+	<stdio.h>
+	<iostream>
+	<vector>
+

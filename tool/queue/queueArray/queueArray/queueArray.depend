@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1489331310 source:c:\users\hasee\desktop\codeblock\queue\queuearray\queuearray\queuearray.cpp
+	"queueArray.h"
+	<stdio.h>
+	"except.h"
+
+1489331297 c:\users\hasee\desktop\codeblock\queue\queuearray\queuearray\queuearray.h
+	"queueArray.cpp"
+
+1489331310 c:\users\hasee\desktop\codeblock\queue\queuearray\queuearray\queuearray.cpp
+	"queueArray.h"
+	<stdio.h>
+	"except.h"
+
+1489326002 c:\users\hasee\desktop\codeblock\queue\queuearray\queuearray\except.h
+	<stdio.h>
+
+1489331416 source:c:\users\hasee\desktop\codeblock\queue\queuearray\queuearray\main.cpp
+	<iostream>
+	<stdio.h>
+	"queueArray.h"
+

@@ -1,0 +1,13 @@
+test_1:90
+test_2:90
+test_3:90
+test_1:9
+test_2:9
+test_3:90
+test_1:5
+test_2:5
+test_3:90
+test_1:7
+test_2:7
+test_3:90
+4 90 90 90 90 

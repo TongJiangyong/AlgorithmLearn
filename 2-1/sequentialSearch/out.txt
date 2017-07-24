@@ -1,0 +1,1 @@
+maxNum is 22   position is 1

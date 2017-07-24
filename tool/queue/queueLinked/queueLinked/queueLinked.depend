@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1489331971 source:c:\users\hasee\desktop\codeblock\queue\queuelinked\queuelinked\queuelinked.cpp
+	"queueLinked.h"
+	<stdio.h>
+	"except.h"
+
+1489332543 c:\users\hasee\desktop\codeblock\queue\queuelinked\queuelinked\queuelinked.h
+	"queueLinked.cpp"
+
+1489331971 c:\users\hasee\desktop\codeblock\queue\queuelinked\queuelinked\queuelinked.cpp
+	"queueLinked.h"
+	<stdio.h>
+	"except.h"
+
+1489326002 c:\users\hasee\desktop\codeblock\queue\queuelinked\queuelinked\except.h
+	<stdio.h>
+
+1489332064 source:c:\users\hasee\desktop\codeblock\queue\queuelinked\queuelinked\main.cpp
+	<iostream>
+	<stdio.h>
+	"queueLinked.h"
+

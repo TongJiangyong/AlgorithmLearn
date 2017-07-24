@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1488801468 source:c:\users\hasee\desktop\codeblock\list\chainlist\chainlist\chainlist.cpp
+	"chainList.h"
+	<stdio.h>
+	"except.h"
+
+1488816892 c:\users\hasee\desktop\codeblock\list\chainlist\chainlist\chainlist.h
+	<iostream>
+	"chainList.cpp"
+
+1488801468 c:\users\hasee\desktop\codeblock\list\chainlist\chainlist\chainlist.cpp
+	"chainList.h"
+	<stdio.h>
+	"except.h"
+
+1488801100 c:\users\hasee\desktop\codeblock\list\chainlist\chainlist\except.h
+	<stdio.h>
+
+1488815850 source:c:\users\hasee\desktop\codeblock\list\chainlist\chainlist\main.cpp
+	<iostream>
+	<stdio.h>
+	"chainList.h"
+
+1489331170 source:c:\users\hasee\desktop\codeblock\list\indeirectlist\indirectlist\main.cpp
+	<iostream>
+	<stdio.h>
+	"IndirectList.h"
+
+1489328786 c:\users\hasee\desktop\codeblock\list\indeirectlist\indirectlist\indirectlist.h
+	<iostream>
+	"IndirectList.cpp"
+
+1489329002 c:\users\hasee\desktop\codeblock\list\indeirectlist\indirectlist\indirectlist.cpp
+	"except.h"
+	"IndirectList.h"
+	<iostream>
+
+1489326002 c:\users\hasee\desktop\codeblock\list\indeirectlist\indirectlist\except.h
+	<stdio.h>
+

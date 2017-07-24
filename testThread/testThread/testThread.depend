@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1487776079 source:c:\users\hasee\desktop\codeblock\testthread\testthread\main.c
+	<pthread.h>
+	<unistd.h>
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+

@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1488801468 source:c:\users\hasee\desktop\codeblock\stack\stacklinked\chainlist.cpp
+	"chainList.h"
+	<stdio.h>
+	"except.h"
+
+1489375871 c:\users\hasee\desktop\codeblock\stack\stacklinked\chainlist.h
+	<iostream>
+	"chainList.cpp"
+
+1488801468 c:\users\hasee\desktop\codeblock\stack\stacklinked\chainlist.cpp
+	"chainList.h"
+	<stdio.h>
+	"except.h"
+
+1489326002 c:\users\hasee\desktop\codeblock\stack\stacklinked\except.h
+	<stdio.h>
+
+1489386691 source:c:\users\hasee\desktop\codeblock\stack\stacklinked\stacklinked.cpp
+	"stackLinked.h"
+	<stdio.h>
+	"except.h"
+
+1489386797 c:\users\hasee\desktop\codeblock\stack\stacklinked\stacklinked.h
+	<stdio.h>
+	"except.h"
+	"chainList.h"
+	"stackLinked.cpp"
+
+1489386691 c:\users\hasee\desktop\codeblock\stack\stacklinked\stacklinked.cpp
+	"stackLinked.h"
+	<stdio.h>
+	"except.h"
+
+1489386911 source:c:\users\hasee\desktop\codeblock\stack\stacklinked\main.cpp
+	<iostream>
+	<stdio.h>
+	"stackLinked.h"
+

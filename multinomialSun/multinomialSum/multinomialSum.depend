@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1488470021 source:c:\users\hasee\desktop\codeblock\multinomialsun\multinomialsum\main.cpp
+	<stdio.h>
+	<iostream>
+	<vector>
+
+1488470022 source:c:\users\jiangyong_tong\desktop\codeblock\multinomialsun\multinomialsum\main.cpp
+	<stdio.h>
+	<iostream>
+	<vector>
+
