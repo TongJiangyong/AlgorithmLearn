@@ -28,7 +28,6 @@ using namespace std;
 //即选择出中值.....
 void GetMiddle()
 {
-
 }
 
 //交换数据

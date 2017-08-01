@@ -4,24 +4,21 @@
 using namespace std;
 
 /**
-归并排序思路
-设两个有序的子序列(相当于输入序列)放在同一序列中相邻的位置上：array[low..m]，array[m + 1..high]，
-先将它们合并到一个局部的暂存序列 temp (相当于输出序列)中，待合并完成后将 temp 复制回 array[low..high]中，从而完成排序。
-在具体的合并过程中，设置 i，j 和 p 三个指针，其初值分别指向这三个记录区的起始位置。
-合并时依次比较 array[i] 和 array[j] 的关键字，取关键字较小（或较大）的记录复制到 temp[p] 中，
-然后将被复制记录的指针 i 或 j 加 1，以及指向复制位置的指针 p加 1。重复这一过程直至两个输入的子序列有一个已全部复制完毕(不妨称其为空)，
-此时将另一非空的子序列中剩余记录依次复制到 array 中即可。
+插入排序
+基本思路为：
+直接插入排序(Insertion Sort)的基本思想是：每次将一个待排序的记录，按其关
+键字大小插入到前面已经排好序的子序列中的适当位置， 直到全部记录插入完成
+为止。
+设数组为 a[0…n-1]。
+1. 初始时，a[0]自成 1 个有序区，无序区为 a[1..n-1]。令 i=1
+2. 将 a[i]并入当前的有序区 a[0…i-1]中形成 a[0…i]的有序区间。
+3. i++并重复第二步直到 i==n-1。排序完成。
 
-即要点为：
-先"分割"再"合并"
-
-这里也能看出归并排序和快速排序很不一样的地方：
-归并排序是比较典型的分治算法，首先将大问题拆成小问题后，分成小问题，但是当前问题并没有解决，解决完没有小问题后，递归来解决大问题****
-对快速排序算法
-则也有分治算法的思想，但是和归并算法比起来不太典型，在分治前，每一次循环都做好了当前循环体的事情，然后再透过分治解决小区域的事情****
-
-http://blog.csdn.net/robertcpp/article/details/51540976
-http://blog.csdn.net/morewindows/article/details/7961256
+即插入排序的思想为：
+将原数组分为两个部分，第一个部分只有一个元素，每次都向里面插入一个元素进行递增即可.....
+即算法的实现也分为两个部分
+1、分离原有数组，以数组下标为1为初始属猪，从数组游标为1的地方开始遍历，找到每一个遍历数组可以插入的位置
+2、插入初始数组，并移动整个数组的位置
 **/
 
 
@@ -29,86 +26,49 @@ http://blog.csdn.net/morewindows/article/details/7961256
 
 
 
-//这个函数是指对一个数组进行归并的过程
-//即，刻意将一个数组分为两段，然后使用归并的思想进行归并
-//通过控制游标，来控制数组的排序，其中，数组c为一个中间的数组
+//自己尝试理解后写的代码看上去可用
 template<class T>
-void mergeArray(T *a,int first,int mid,int last,T *c)
+void InsertSort_1(T *a,int n)
 {
-    int i = first,j=mid+1;
-    int k=0;
-    while(i<=mid&&j<=last)
+    int length = 1;
+    for(int i=1;i<n;i++)
     {
-        if(a[i]<a[j])
-            c[k++]=a[i++];
-        else
-            c[k++]=a[j++];
+        int j=0;
+        for(;j<length;j++)
+        {
+            if(a[i]<a[j])
+                break;
+        }
+        T temp = a[i];
+        for(int k=length;k>j;k--)
+        {
+            a[k]=a[k-1];
+        }
+        a[j]=temp;
+        length++;
     }
-    while(i<=mid)
+}
+//学习别人的代码，将搜索和数据移动放在同一代码段中为.....
+//每次a[i]先和前面一个数据a[i-1]比较，如果a[i] > a[i-1]说明a[0…i]也是有序的，
+//无须调整。否则就令j=i-1,temp=a[i]。然后一边将数据a[j]向后移动一边向前搜索，
+//当有数据a[j]<a[i]时停止并将temp放到a[j + 1]处
+//如果是从后向前移动，搜索和移动其实可以放在一起......
+template<class T>
+void InsertSort_2(T *a,int n)
+{
+    int i, j;
+    for(int i=1;i<n;i++)
     {
-        c[k++]= a[i++];
+        if(a[i]<a[i-1])
+        {
+            int temp = a[i];
+            for(j=(i-1);j>=0&&a[j]>temp;j--)
+                a[j+1] = a[j];
+            a[j+1] = temp;
+        }
     }
-    while(j<=last)
-    {
-        c[k++]= a[j++];
-    }
-    for(i = 0;i<k;i++)
-        a[first+i] = c[i];
 }
 
-//归并排序的特点是需要先分再合并
-//因此要多做处理的过程
-template<class T>
-void mergeSort(T *a,int first,int last,T *temp)
-{
-    if(first<last)
-    {
-        //递归到最终，实现了middle = first = last的条件
-        int middle = (first+last)/2;
-        mergeSort(a,first,middle,temp);     //左边设置为有序序列.....
-        mergeSort(a,middle+1,last,temp);  //这里是由整除的特性引起的.....一般为一半，然后加1，即可
-       //将有序数列并列...需要形象的去理解这个分化，然后合并的过程，合并的过程，是对数组a处理，通过控制游标的变化来移动数据，所以使用一个数组也是可以的
-       //只要保证预备归并的两个数组是有序的即可......
-        mergeArray(a,first,middle,last,temp);
-    }
-
-}
-//可用于中值快速排序的中值获取函数
-//即选择出中值.....
-template<class T>
-void MergeSort(T a[],int n)
-{
-    //归并排序的特点，需要传入一个新的数组用于中间使用的过程.......
-    T *p = new T[n];
-    if(p==NULL)
-        return;
-    //归并的过程也需要两个指针
-    mergeSort(a,0,n-1,p);
-    delete[] p;
-}
-
-//相当于指针移动
-//相等的情况下，指针不会动.....
-template<class T>
-void mergeArrayTest(T *a,int m,T *b,int n,T *temp)
-{
-    int i=0,j=0,k=0;
-    while(i<m&&j<n)
-    {
-        if(a[i]<b[j])
-            temp[k++]=a[i++];
-        else
-            temp[k++]=b[j++];
-    }
-    while(i<m)
-    {
-        temp[k++]= a[i++];
-    }
-    while(j<n)
-    {
-        temp[k++]= b[j++];
-    }
-}
 
 
 int main(){
@@ -123,7 +83,7 @@ for(int i=0;i<num;i++)
 {
     cin>>arrayInt[i];
 }
-    MergeSort(arrayInt,num);
+    InsertSort_2(arrayInt,num);
 //TODO add algorithm
 //QuickSort(arrayInt,num);
 

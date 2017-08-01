@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1501588406 source:c:\users\jiangyong_tong\desktop\codeblock\algorithmlearn\application\divide_and_conquer\directsort\main.cpp
+	<iostream>
+	<stdio.h>
+
