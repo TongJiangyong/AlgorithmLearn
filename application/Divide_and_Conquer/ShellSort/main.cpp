@@ -29,7 +29,8 @@ void Swap(T &a,T &b)
 
 /**
 这里是对希尔排序理解算法的实现.....
-1、每次将步长减半，步长即，同一组中，间隔的数据
+1、每次将步长减半，步长即，同一组中，间隔的数据,即，步长每次都逐渐变小，每组中的元素变多，但是排序变得容易，即步长grp也为组的个数
+3、当每组长度变为1，即对整体进行插入排序了....
 
 **/
 template<class T>
@@ -39,16 +40,17 @@ void ShellSort_1(T a[],int n)
     //gap 初始为n，每次减半，这里gap/2每次都最后都能大于1
     for(gap = n/2;gap>0;gap/=2)
     {
-        //分组后每次都按组来
+        //分组后每次都按组来，这里是遍历每个组
         for(i=0;i<gap;i++)
         {
-            for(j=i+gap;j<n;j+=gap)
+            //对每一组中的数据进行直接插入排序 ，即希尔排序改变了直接插入排序的做法....
+            for(j=i+gap;j<n;j+=gap)   //这里实际上使用了，对一个数组进行分组后，遍历每个分组中数据的标准做法......
             {
-                if(a[j]<a[j-gap])
+                if(a[j]<a[j-gap]) //如果每一组发现一个后面的元素小于前面的元素
                 {
-                    int temp = a[j];
-                    int k = j-gap;
-                    while(k>=0&&a[k]>temp)
+                    int temp = a[j];  //保留后面的元素
+                    int k = j-gap;    //保留前面元素的位置
+                    while(k>=0&&a[k]>temp) //将前面所有的元素进行平移
                     {
                         a[k+gap]=a[k];
                         k-=gap;
@@ -61,10 +63,36 @@ void ShellSort_1(T a[],int n)
 }
 
 
-/**
-这里是对希尔排序的精简实现
+//这里是自己理解后，写的希尔排序算法
+template<class T>
+void ShellSort_2(T a[],int n)
+{
+    int gap,i,j,k;
+    T temp;
+    for(gap = n/2;gap > 0;gap = gap/2)//对每一轮循环进行分组
+    {
+        //遍历每个组
+        for(i=0;i<gap;i++)
+        {
+            //直接插入排序，从序号为1开始，而不是0
+            for(j=i+gap;j<n;j=j+gap) //对每个组内进行直接排序,下面是排序算法的实现，只不过之前排序算法的间隔为1，这里的间隔为gap即可.....，shell排序的思想即使如此
+            {
+                if(a[j]<a[j-gap])
+                {
+                    temp = a[j];
+                    //对插入前，进行排序.....
+                    for(k=j-gap;k>=0&&a[k]>temp;k=k-gap)
+                        a[k+gap] = a[k];
+                    a[k+gap] = temp;
+                }
 
-**/
+            }
+        }
+    }
+}
+
+
+
 
 
 
@@ -81,7 +109,7 @@ for(int i=0;i<num;i++)
 {
     cin>>arrayInt[i];
 }
-    ShellSort_1(arrayInt,num);
+    ShellSort_2(arrayInt,num);
 //TODO add algorithm
 //QuickSort(arrayInt,num);
 
