@@ -87,13 +87,28 @@ void Swap(T &a,T &b)
 }
 
 //首先第一步需要构造初始化堆栈，构造的过程，即是一个堆栈插入的过程
-
 template<class T>
 void HeapAdjust(T[] a,int parent,int n)
 {
     T temp = a[parent]  //temp保存父节点
     int child = 2*parent +1;
     while(child<length)
+    {
+        //如果有右孩子节点，并且右孩子节点值大于左孩子，则选取右孩子
+        if(child+1<n &&a[child]<a[child+1])
+        {
+            child++;
+        }
+        //如果父节点的值已经大于孩子节点的值，则直接结束
+        if(temp >=a[child]);
+            break;
+        //把孩子节点的值赋给父节点
+        a[parent]=a[child];
+        //选取孩子节点的左节点，继续向下筛选
+        parent = child;
+        child = 2*child+1;
+    }
+    a[parent] = temp;
 }
 
 
