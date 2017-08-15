@@ -53,6 +53,9 @@ using namespace std;
 
 http://www.cnblogs.com/jingmoxukong/p/4303826.html
 http://blog.csdn.net/morewindows/article/details/6709644
+http://blog.csdn.net/moxiaomomo/article/details/6331386
+https://segmentfault.com/a/1190000002466215
+http://blog.csdn.net/jx232515/article/details/51549323
 问：如何进行堆排序？？？
 
 答：根据堆的性质，使用基本的堆操作方法.....
@@ -64,9 +67,19 @@ http://blog.csdn.net/morewindows/article/details/6709644
 取顶 top
 堆排序 heap_sort
 
+堆排序的基本思路：
+堆排序算法的基本思想是，将数组A创建为一个最大堆，然后交换堆的根(最大元素)和最后一个叶节点x，
+将x从堆中去掉形成新的堆A1，然后重复以上动作，直到堆中只有一个节点。
 
+A 构建一个根据初始排序的大根堆，这个堆是初始无序区,即，将原数组排序成一个大根堆的形式
+    大根堆并不是最后的结果，还需要得到最后的输出队列......
+B 对这个大根堆进行排序操作...，输出最后的数组
 
-堆排序的应用场景：
+堆排序的应用场景和实际意义：
+
+堆排序的时间复杂度是O(nlgN)，与快速排序达到相同的时间复杂度。但是在实际应用中，我们往往采用快速排序而不是堆排序。这是因为快速排序的一个好的实现，
+往往比堆排序具有更好的表现。堆排序的主要用途，是在形成和处理优先级队列方面。另外，如果计算要求是类优先级队列
+（比如，只要返回最大或者最小元素，只有有限的插入要求等），堆同样是很适合的数据结构。
 
 我们要排序的话，直接使用快排即可，时间更快，用堆排还需要O(2*n)的空间。这也是为什么我说堆的操作
 
@@ -85,22 +98,32 @@ void Swap(T &a,T &b)
     a = b;
     b = temp;
 }
+template<class T>
+void PrintArray(T a[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        printf("%d ",a[i]);
+    }
+    printf("\n");
+}
 
 //首先第一步需要构造初始化堆栈，构造的过程，即是一个堆栈插入的过程
 template<class T>
-void HeapAdjust(T[] a,int parent,int n)
+void HeapAdjust(T a[],int parent,int n)
 {
-    T temp = a[parent]  //temp保存父节点
-    int child = 2*parent +1;
-    while(child<length)
+    T temp = a[parent];  //temp保存父节点
+    int child = 2*parent +1; //获得左节点
+
+    while(child<n)
     {
         //如果有右孩子节点，并且右孩子节点值大于左孩子，则选取右孩子
-        if(child+1<n &&a[child]<a[child+1])
+        if(child+1<n && a[child]<a[child+1])
         {
             child++;
         }
         //如果父节点的值已经大于孩子节点的值，则直接结束
-        if(temp >=a[child]);
+        if(temp >=a[child])  //**在这里多了一个分号，导致调试了很久**
             break;
         //把孩子节点的值赋给父节点
         a[parent]=a[child];
@@ -108,6 +131,7 @@ void HeapAdjust(T[] a,int parent,int n)
         parent = child;
         child = 2*child+1;
     }
+
     a[parent] = temp;
 }
 
@@ -116,10 +140,32 @@ void HeapAdjust(T[] a,int parent,int n)
 template<class T>
 void HeapSort(T a[],int n)
 {
-    for (int i = n - 1; i >= 1; i--)
+    //循环建立初始的堆
+    /**
+    建立最大堆：将A[1,n]数组转换为最大堆。因为最大堆为完全二叉树结构，因此A[n/2+1],……,A[n]是最大堆的叶子节点。每个叶子节点本身就是一个最大堆，
+    所以我们就要从A[n/2]~A[1]逐步维护这个最底层的最大堆（维护）。
+    //这个方法是通过叶子节点(度为0的节点)来维护整个堆的过程，即这里构建堆使用了叶子节点的特性(即，叶子节点不需要调整堆的排序过程....白话算法将得比较清楚.....).....
+    **/
+    for(int i = n/2-1;i>=0;i--)
     {
-        Swap(a[i], a[0]);
-        MinHeapFixdown(a, 0, i);
+       HeapAdjust(a,i,n);
+    }
+    printf("初始堆：");
+    PrintArray(a,n);
+    /**
+    堆排序：先建立一个最大堆。然后将最大堆的A[1]与A[n]交换，然后从堆中去掉这个节点n，通过减少A.heap_size的值来实现。剩余的节点中，
+    新的根节点可能违背了最大堆的性质，因此需要调用MAX_HEAPWEIHU(A，1)来维护最大堆。
+    **/
+    //进行n-1次循环，完成排序
+    for(int i = n-1;i>0;i--)
+    {
+        T temp = a[i];
+        a[i]=a[0];
+        a[0]=temp;
+        //注意这里维护的过程实际上将数组长度每次都减去了一点
+        HeapAdjust(a,0,i);
+        printf("第%d趟排序完成：",(n-i));
+        PrintArray(a,n);
     }
 
 }
@@ -136,10 +182,14 @@ for(int i=0;i<num;i++)
 {
     cin>>arrayInt[i];
 }
-    HeapSort(arrayInt,num);
+cout<<"排序前为"<<endl;
+PrintArray(arrayInt,num);
+
+HeapSort(arrayInt,num);
 //TODO add algorithm
 //QuickSort(arrayInt,num);
 
+cout<<"排序完成结果为"<<endl;
 for(int j=0;j<num;j++){
     cout<<arrayInt[j]<<" ";
 }
