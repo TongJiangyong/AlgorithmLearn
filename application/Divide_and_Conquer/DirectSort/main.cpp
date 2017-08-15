@@ -4,7 +4,7 @@
 using namespace std;
 
 /**
-插入排序
+直接插入排序
 基本思路为：
 直接插入排序(Insertion Sort)的基本思想是：每次将一个待排序的记录，按其关
 键字大小插入到前面已经排好序的子序列中的适当位置， 直到全部记录插入完成
@@ -81,7 +81,7 @@ int main(){
 #endif
 int num;
 cin>>num;
-int *arrayInt = new int[num];
+float *arrayInt = new float[num];
 for(int i=0;i<num;i++)
 {
     cin>>arrayInt[i];
