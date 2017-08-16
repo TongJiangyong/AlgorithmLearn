@@ -12,8 +12,14 @@ using namespace std;
 然后将被复制记录的指针 i 或 j 加 1，以及指向复制位置的指针 p加 1。重复这一过程直至两个输入的子序列有一个已全部复制完毕(不妨称其为空)，
 此时将另一非空的子序列中剩余记录依次复制到 array 中即可。
 
+基本原理为：
+将两个有序数组合并起来的操作比较简单
+因此，可以将原数组不断拆分，最终递归合并成一个数组即可.....
+
+归并排序的特点，需要传入一个新的数组用于中间使用的过程.......
+
 即要点为：
-先"分割"再"合并"
+归并排序的含义为：先"分割"再"合并"
 
 这里也能看出归并排序和快速排序很不一样的地方：
 归并排序是比较典型的分治算法，首先将大问题拆成小问题后，分成小问题，但是当前问题并没有解决，解决完没有小问题后，递归来解决大问题****
@@ -32,6 +38,7 @@ http://blog.csdn.net/morewindows/article/details/7961256
 //这个函数是指对一个数组进行归并的过程
 //即，刻意将一个数组分为两段，然后使用归并的思想进行归并
 //通过控制游标，来控制数组的排序，其中，数组c为一个中间的数组
+//将有二个有序数列a[first...mid]和a[mid...last]合并。 即通过游标，将一个数组分为了两块即可......
 template<class T>
 void mergeArray(T *a,int first,int mid,int last,T *c)
 {
@@ -52,6 +59,8 @@ void mergeArray(T *a,int first,int mid,int last,T *c)
     {
         c[k++]= a[j++];
     }
+    //使用前面的三个while循环，将C序列排好
+    //在这个for循环中，将排好的C序列放在a的数组中.....
     for(i = 0;i<k;i++)
         a[first+i] = c[i];
 }
@@ -61,6 +70,7 @@ void mergeArray(T *a,int first,int mid,int last,T *c)
 template<class T>
 void mergeSort(T *a,int first,int last,T *temp)
 {
+    //这里的判断，保证每次都能分成两个，如果不能再分，说明排序已经完成
     if(first<last)
     {
         //递归到最终，实现了middle = first = last的条件

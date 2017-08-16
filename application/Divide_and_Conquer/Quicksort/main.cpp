@@ -5,9 +5,11 @@ using namespace std;
 
 /**
 快速排序思路
+种植元素排序的过程。。。。。
  /使用快速排序方法对a[ 0 :n- 1 ]排序
 从a[ 0 :n- 1 ]中选择一个元素作为m i d d l e，该元素为支点
 把余下的元素分割为两段left 和r i g h t，使得l e f t中的元素都小于等于支点，而right 中的元素都大于等于支点
+每一轮结束后，都保证，中值元素的左右两边均处于平衡状态
 递归地使用快速排序方法对left 进行排序
 递归地使用快速排序方法对right 进行排序
 所得结果为l e f t + m i d d l e + r i g h t
@@ -60,9 +62,9 @@ void quickSort(T a[],int left,int right)
         {
             last--;
         }
-        //如果找到数据，则进行交互
+        //如果找到数据，则进行交互,这个互换是值的互换，即，将middle的值换到last所指的位置
         Swap(a[last],a[first]);
-        //从左边的元素开始找
+        //从左边的元素开始找，这个呼唤是值的互换，即，将middle的值换到first所指的位置
         while(first<last&&a[first]<=middle)
         {
             first++;
@@ -70,7 +72,7 @@ void quickSort(T a[],int left,int right)
         //如果找到数据则交互
         Swap(a[last],a[first]);
     }
-    //设置分治的参数
+    //设置分治的参数 ，一轮循环后，中值元素寻找完毕，准备其他的过程.....
     a[last] = middle;
     //进入分治的过程
     //左边
