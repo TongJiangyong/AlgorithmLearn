@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1503416730 source:c:\users\hasee\desktop\algorithm\codeblockproject\application\stringdeal\bruteforce\main.cpp
+	<iostream>
+	<stdio.h>
+	<string>
+	<cstring>
+	<iostream>
+	<string>
+	<stdio.h>
+
