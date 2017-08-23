@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1503482646 source:c:\users\jiangyong_tong\desktop\codeblock\algorithmlearn\application\stringdeal\kmp\main.cpp
+	<iostream>
+	<stdio.h>
+	<cstring>
+
