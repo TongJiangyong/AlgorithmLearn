@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1503565011 source:c:\users\jiangyong_tong\desktop\codeblock\algorithmlearn\application\stringdeal\sunday\main.cpp
+	<iostream>
+	<stdio.h>
+	<string>
+	<cstring>
+
