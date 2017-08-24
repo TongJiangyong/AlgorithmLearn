@@ -16,6 +16,7 @@ Sunday算法思想跟BM算法很相似，在匹配失败时关注的是文本串中参加匹配的最末位字符的
 
 /**
 Sunday算法的实现原理：
+http://blog.csdn.net/airfer/article/details/8951802/
 http://www.cnblogs.com/huhu0013/p/3227811.html
 例如我们要在"substring searching algorithm"查找"search"，刚开始时，把子串与文本左边对齐：
 substring searching algorithm
