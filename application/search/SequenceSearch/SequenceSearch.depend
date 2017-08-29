@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1504007464 source:c:\users\jiangyong_tong\desktop\codeblock\algorithmlearn\application\search\sequencesearch\main.cpp
+	<iostream>
+	<stdio.h>
+	<string>
+	<cstring>
+

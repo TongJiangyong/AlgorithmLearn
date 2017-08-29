@@ -10,6 +10,7 @@ using namespace std;
 各种文本编辑器的"查找"功能（Ctrl+F），大多采用Boyer-Moore算法。
 基本原理：
 http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html
+http://blog.csdn.net/joylnwang/article/details/6785743
 移动的规则包括：坏字符规则和好后缀规则，
 坏字符：与子串最后一位不匹配的字符
 后移位数 = 坏字符的位置 - 搜索词中的上一次出现位置(从右边数的上一次)
@@ -69,7 +70,7 @@ int backFit(const string charToFind,const string charToFit)
 
 //设定坏字符移动的步数
 //想，charToFit为子串，m是子串长度
-void preBmBc(char *charToFit, int m, int bmBc[]) {
+void preBmBc(const char *charToFit, int m, int bmBc[]) {
 
    int i;
 
@@ -88,16 +89,22 @@ void preBmBc(char *charToFit, int m, int bmBc[]) {
 //理解上面一段话，可以参考下面链接的解释： 这种方法很重要......
 //http://www.cnblogs.com/xubenben/p/3359364.html
 //这里suffixes求得是模式串自身的属性
-void suffixes(char *x, int m, int *suff)
+void suffixes(const char *x, int m, int *suff)
 {
-　　suff[m-1]=m; //设置最后一个的匹配为整个数组
-　　for (i=m-2；i>=0；--i){
+    //设置最后一个的匹配为整个数组
+    suff[m-1]=m;
+    int i,q;
+    for (i=m-2;i>=0;--i){
         q=i;
-        while(q>=0&&charToFit[q]==charToFit[m-1-i+q])
-            --q;
+        while(q>=0&&x[q]==x[m-1-i+q])
+        {
+             --q;
+        }
+
         suff[i]=i-q; //如果没有匹配的长度，则suff[i] = 0
     }
 }
+
 //有了suffix数组，就可以定义bmGs[]数组，bmGs[i] 表示遇到好后缀时，模式串应该移动的距离，
 //其中i表示好后缀前面一个字符的位置（也就是坏字符的位置），构建bmGs数组分为三种情况，
 //分别对应上述的移动模式串的三种情况
@@ -109,10 +116,10 @@ void suffixes(char *x, int m, int *suff)
 而在这三种情况中第三种情况获得的bmGs[i]值大于第二种大于第一种。故而写代码的时候我们先计算第三种情况，再计算第二种情况，再计算第一种情况。
 为什么呢，因为对于同一个位置的多次修改只会使得bmGs[i]越来越小。
 代码4-5行对应了第三种情况，7-11行对于第二种情况，12-13对应第三种情况。
+目的是获得精确的bmGs[i]
 */
-
-void preBmGs(char *x, int m, int bmGs[]) {
-   int i, j, suff[XSIZE];
+void preBmGs(const char *x, int m, int bmGs[]) {
+   int i, j, suff[CHAR_NUM];
    suffixes(x, m, suff);
    for (i = 0; i < m; ++i)
       bmGs[i] = m;
@@ -126,27 +133,118 @@ void preBmGs(char *x, int m, int bmGs[]) {
       bmGs[m - 1 - suff[i]] = m - 1 - i;
 }
 
+int maxNum(int a,int b){
+    if(a>=b){
+        return a;
+    }else{
+        return b;
+    }
+}
 
-void BM(char *x, int m, char *y, int n) {
-   int i, j, bmGs[XSIZE], bmBc[ASIZE];
-
+int bm_2(const char *x, const char *y) {
+   int i, j, bmGs[CHAR_NUM], bmBc[CHAR_NUM];
    /* Preprocessing */
-   preBmGs(x, m, bmGs);
-   preBmBc(x, m, bmBc);
+   int n = strlen(x);
+   int m = strlen(y);
+   preBmGs(y, m, bmGs);
+   preBmBc(y, m, bmBc);
    /* Searching */
    j = 0;
    while (j <= n - m) {
       for (i = m - 1; i >= 0 && x[i] == y[i + j]; --i);
       if (i < 0) {
-         OUTPUT(j);
+         return j;
          j += bmGs[0];
       }
       else
-         j += MAX(bmGs[i], bmBc[y[i + j]] - m + 1 + i);
+         j += maxNum(bmGs[i], bmBc[y[i + j]] - m + 1 + i);
    }
 }
 
 
+/*
+ * ===  FUNCTION  ======================================================================
+ *         Name:  bm
+ *         Descritexttion:  Boyer–Moore method for string match.
+ *======================================================================================
+ */
+int bm_1(const char *text, const char *charToFit)
+{
+    if (*text == '/0' || *charToFit == '/0')
+        return -1;
+    int i, j, k;
+    int text_len = strlen(text);
+    int find_len = strlen(charToFit);
+    if (text_len < find_len)
+        return -1;
+    int delta_1[CHAR_MAX];
+    for (i=0; i<CHAR_MAX; i++)
+        delta_1[i] = find_len;
+    for (i=0; i<find_len; i++)
+        delta_1[charToFit[i]] = find_len - i - 1;
+    int rpr[find_len];
+    rpr[find_len-1] = find_len - 1;
+    for (i=find_len-2; i>=0; i--)
+    {
+        int len = (find_len - 1) - i;
+        //charToFit the reoccurence of the right most (len) chars
+        for (j=find_len-2; j>=(len-1); j--)
+        {
+            if (strncmp(charToFit+i+1, charToFit+j-len+1, len) == 0)
+            {
+                if ((j-len) == -1 || charToFit[i] != charToFit[j-len])
+                {
+                    rpr[i] = j - len + 1;
+                    break;
+                }
+            }
+        }
+        //if the right most (len) chars not completely occur, we find the right
+        //substring of (len). every step, we try to find the right most (len-k)
+        //chars.
+        for (k=1; j<(len-1) && k<len; k++)
+        {
+            if (strncmp(charToFit+i+k, charToFit, len-k) == 0)
+            {
+                rpr[i] = 0 - k;
+                break;
+            }
+        }
+        if (j<(len-1) && k == len)
+        {
+            rpr[i] = 0 - len;
+        }
+    }
+    int delta_2[find_len];
+    for (i=0; i<find_len; i++)
+        delta_2[i] = find_len - rpr[i];
+    i = find_len - 1;
+    j = find_len - 1;
+    while (i < text_len)
+    {
+        if (text[i] == charToFit[j])
+        {
+            i--;
+            j--;
+        }
+        else
+        {
+            if (delta_1[text[i]] > delta_2[j])
+            {
+                i += delta_1[text[i]];
+            }
+            else
+            {
+                i += delta_2[j];
+            }
+            j = find_len - 1;
+        }
+        if (j == -1)
+            return i+1;
+    }
+
+    return -1;
+}
 int main(){
 #ifdef LOCAL
     freopen("in.txt", "r", stdin);
@@ -158,10 +256,10 @@ getline(cin,stringToFind);
 getline(cin,stringToFit);
 const char * charToFind =stringToFind.data();
 const char * charToFit =stringToFit.data();
-
+http://blog.csdn.net/joylnwang/article/details/6785743
 cout<<charToFind<<endl;
 cout<<charToFit<<endl;
-cout<<backFit(stringToFind,stringToFit)<<endl;
+cout<<bm_2(charToFind,charToFit)<<endl;
 
 
 #ifdef LOCAL
