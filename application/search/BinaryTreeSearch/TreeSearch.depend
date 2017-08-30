@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1504078873 source:c:\users\jiangyong_tong\desktop\codeblock\algorithmlearn\application\search\treesearch\binarysearch.cpp
+	<iostream>
+	<iomanip>
+	"BinarySearch.h"
+
+1504079890 c:\users\jiangyong_tong\desktop\codeblock\algorithmlearn\application\search\treesearch\binarysearch.h
+	<iostream>
+	<iomanip>
+	"BinarySearch.h"
+
+1504079781 source:c:\users\jiangyong_tong\desktop\codeblock\algorithmlearn\application\search\treesearch\main.cpp
+	<iostream>
+	<stdio.h>
+	"BinarySearch.h"
+

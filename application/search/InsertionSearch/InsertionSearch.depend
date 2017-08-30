@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1504062848 source:c:\users\jiangyong_tong\desktop\codeblock\algorithmlearn\application\search\insertionsearch\main.cpp
+	<iostream>
+	<stdio.h>
+	<string>
+	<cstring>
+

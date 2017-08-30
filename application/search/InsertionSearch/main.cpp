@@ -7,9 +7,15 @@
 #define ARRAY_LEN(array,len){len = (sizeof(array) / sizeof(array[0]));}
 using namespace std;
 /**
-顺序查找法：
-顺序查找适合于存储结构为顺序存储或链接存储的线性表。
+插值查找法
+插值查找=找适合于存储结构为顺序存储或链接存储的线性表。
+是一种对二分法的改进...
 
+即，将二分之一的插值，改进为,与值相关的插值
+　　mid=(low+high)/2, 即mid=low+1/2*(high-low);
+　　通过类比，我们可以将查找的点改进为如下：
+　　mid=low+(key-a[low])/(a[high]-a[low])*(high-low)，
+充分利用了排位和值的比值关系....
 
 **/
 
@@ -23,14 +29,39 @@ int getArrayLen(T& array)
     return (sizeof(array) / sizeof(array[0]));
 }
 //在C/C++中，如果传递到是指针，则一般无法计算数组长度，strlen是例外.....清楚原理即可....
-int SequenceSearch(int a[],int value,int n)
+//插值查找使用的是递归的方法实现
+//这个递归实际上是单路的，即，会沿着一路一直递归下去，直到返回.....
+int insertionSearch(int a[],int value,int low,int high)
 {
-    int i;
-    for(i=0; i<n; i++)
-        if(a[i]==value)
-            return i;
-    return -1;
+    //这里是异常终止条件
+    if(low>=high){
+        return -1;
+    }
+    int mid =low+(value-a[low])/(a[high]-a[low])*(high-low);
+    //这里是正常终止条件
+    if(a[mid]==value)
+    {
+        return mid;
+    }
+    else if(a[mid]>value)
+    {
+        return insertionSearch(a,value,low,mid-1);
+
+    }
+    else if(a[mid]<value)
+    {
+        return insertionSearch(a,value,mid+1,high);
+    }
+
 }
+
+int InsertionSearch(int a[],int value,int n)
+{
+    int high = n-1;
+    int low =0;
+    return insertionSearch(a,value,low,high);
+}
+
 
 
 int main(){
@@ -52,7 +83,7 @@ for(int i=0;i<num;i++)
 cout<<endl;
 int searchNum;
 cin>>searchNum;
-cout<<SequenceSearch(arrayInt,searchNum,num)<<endl;
+cout<<InsertionSearch(arrayInt,searchNum,num)<<endl;
 #ifdef LOCAL
     fclose(stdin);
     fclose(stdout);

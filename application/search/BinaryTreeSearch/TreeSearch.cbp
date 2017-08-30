@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="TreeSearch" />
+		<Option title="BinaryTreeSearch" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="BinarySearch.h" />
+		<Unit filename="in.txt" />
+		<Unit filename="main.cpp" />
+		<Unit filename="out.txt" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -7,9 +7,12 @@
 #define ARRAY_LEN(array,len){len = (sizeof(array) / sizeof(array[0]));}
 using namespace std;
 /**
-顺序查找法：
-顺序查找适合于存储结构为顺序存储或链接存储的线性表。
+二分法查找/折半查找
+用于查找线性表比较好.....
+而且线性表要是递增的比较好.....
 
+折半查找的前提条件是需要有序表顺序存储，对于静态查找表，一次排序后不再变化，折半查找能得到不错的效率。
+但对于需要频繁执行插入或删除操作的数据集来说，维护有序的排序会带来不小的工作量，那就不建议使用
 
 **/
 
@@ -23,13 +26,43 @@ int getArrayLen(T& array)
     return (sizeof(array) / sizeof(array[0]));
 }
 //在C/C++中，如果传递到是指针，则一般无法计算数组长度，strlen是例外.....清楚原理即可....
-int SequenceSearch(int a[],int value,int n)
+int BinarySearch_1(int a[],int value,int n)
 {
-    int i;
-    for(i=0; i<n; i++)
-        if(a[i]==value)
-            return i;
+    int low ,high,mid;
+    low = 0;
+    high =n-1;
+    //这里low和high在不断变化
+    while(low<=high)
+    {
+        //二分法需要先计算middle的值
+        mid=(low+high)/2;
+        if(a[mid]==value)
+        {
+             return mid;
+        }
+        else if(a[mid]>value)
+        {
+             high = mid-1;
+        }
+        else
+        {
+            low = mid+1;
+        }
+    }
     return -1;
+}
+
+//使用递归实现二分法
+//关键是计算出low and hight即可.....
+int BinarySearch_2(int a[], int value, int low, int high)
+{
+    int mid = low+(high-low)/2;
+    if(a[mid]==value)
+        return mid;
+    if(a[mid]>value)
+        return BinarySearch2(a, value, low, mid-1);
+    if(a[mid]<value)
+        return BinarySearch2(a, value, mid+1, high);
 }
 
 
@@ -52,7 +85,7 @@ for(int i=0;i<num;i++)
 cout<<endl;
 int searchNum;
 cin>>searchNum;
-cout<<SequenceSearch(arrayInt,searchNum,num)<<endl;
+cout<<BinarySearch(arrayInt,searchNum,num)<<endl;
 #ifdef LOCAL
     fclose(stdin);
     fclose(stdout);
